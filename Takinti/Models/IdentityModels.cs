@@ -28,6 +28,7 @@ namespace Takinti.Models
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+
         }
     }
 }
