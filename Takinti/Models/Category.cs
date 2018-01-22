@@ -9,6 +9,12 @@ namespace Takinti.Models
 {
     public class Category
     {
+        public Category()
+
+        {
+            ChildCategories = new HashSet<Category>();
+
+        }
 
         public int Id { get; set; }
         [Required]
@@ -21,7 +27,7 @@ namespace Takinti.Models
         public string Icon { get; set; }
         [StringLength(200)]
         public string Photo { get; set; }
-        [StringLength(200)]
+       
         public bool ShowInHome { get; set; }
 
         // üst kategori
@@ -29,6 +35,8 @@ namespace Takinti.Models
         public int? ParengCategoryId { get; set; }
         [ForeignKey("ParengCategoryId")]
         public virtual  Category ParentCategory { get; set;}
+
+        public virtual ICollection<Category>ChildCategories { get; set; }
 
         public virtual ICollection<Product>Products { get; set; }
 

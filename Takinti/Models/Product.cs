@@ -45,7 +45,7 @@ namespace Takinti.Models
         public int Quantity { get; set; }
 
         // ????
-        public int SelectCount { get; }
+        public int SeleCount { get; }
 
         [StringLength(200)]
         public string Details { get; set; }

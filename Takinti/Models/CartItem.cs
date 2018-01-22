@@ -20,7 +20,7 @@ namespace Takinti.Models
 
         public int Id { get; set; }
 
-        public int CardId { get; set; }
+        public int CartId { get; set; }
         [ForeignKey("CartId")]
          public virtual Cart Cart { get; set; }
         

@@ -12,9 +12,9 @@ namespace Takinti.Models
     {
 
         //
-        public int? CartId { get; set; }
-              [ForeignKey("CardId")]
-        public virtual Cart Cart { get; set; }
+         //   public int? CartId { get; set; }
+         //     [ForeignKey("CardId")]
+         //public virtual Cart Cart { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -29,13 +29,16 @@ namespace Takinti.Models
     {
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
-        {
+        {// otomatik update ve migration
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, 
+                Takinti.Migrations.Configuration>("DefaultConnection"));
         }
 
         public DbSet<Category>Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<Post>Posts { get; set; }
 
 
         public static ApplicationDbContext Create()

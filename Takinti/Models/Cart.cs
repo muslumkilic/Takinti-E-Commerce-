@@ -20,10 +20,13 @@ namespace Takinti.Models
         }
 
         public int Id { get; set; }
-        public Guid? UserId { get; set; }
+        public string UserName { get; set; }
 
-        [ForeignKey("UserId")]
-        public virtual ApplicationUser User { get; set; }
+
+        //public Guid? UserId { get; set; }
+
+        //[ForeignKey("UserId")]
+        //public virtual ApplicationUser User { get; set; }
 
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
