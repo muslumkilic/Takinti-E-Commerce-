@@ -9,7 +9,7 @@ namespace Takinti.Models
     public class Cart
     {
 
-        Cart()
+        public Cart()
         {
 
             CreateDate = DateTime.Now;

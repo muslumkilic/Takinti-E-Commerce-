@@ -1,4 +1,6 @@
-﻿<!doctype html>
+﻿@using Takinti.Models
+
+<!doctype html>
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8">
@@ -62,7 +64,7 @@
                                         @*slug biz,m verdiğimiz bir parametre adı metinsel url anlamında*@
                                         <a href="@Url.Action("Index","Category",new { slug = "kolyeler" })">Kolyeler</a>
 
-                                        
+
                                     </li>
                                     <li>
                                         <a href="@Url.Action("Index","Category",new { slug = "kupeler" })">Küpeler</a>
@@ -82,39 +84,39 @@
                                     </li>
 
                                 </ul>
-                                  
-                                  
+
+
                             </nav>
                             <div class="mobile-menu clearfix visible-xs visible-sm">
                                 <nav id="mobile_dropdown">
                                     <ul>
-                                    <li>
-                                        <a href="@Url.Action("Index","Home")">Anasayfa</a>
+                                        <li>
+                                            <a href="@Url.Action("Index","Home")">Anasayfa</a>
 
-                                    </li>
-                                    <li>
-                                        @*slug biz,m verdiğimiz bir parametre adı metinsel url anlamında*@
-                                        <a href="@Url.Action("Index","Category",new { slug = "kolyeler" })">Kolyeler</a>
+                                        </li>
+                                        <li>
+                                            @*slug biz,m verdiğimiz bir parametre adı metinsel url anlamında*@
+                                            <a href="@Url.Action("Index","Category",new { slug = "kolyeler" })">Kolyeler</a>
 
 
-                                    </li>
-                                    <li>
-                                        <a href="@Url.Action("Index","Category",new { slug = "kupeler" })">Küpeler</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Index","Category",new { slug = "kupeler" })">Küpeler</a>
 
-                                    </li>
-                                    <li>
-                                        <a href="@Url.Action("Index","Category",new { slug = "yuzukler" })">Yüzükler</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Index","Category",new { slug = "yuzukler" })">Yüzükler</a>
 
-                                    </li>
-                                    <li>
-                                        <a href="@Url.Action("Index","Blog")">Blog</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Index","Blog")">Blog</a>
 
-                                    </li>
-                                    <li>
-                                        <a href="@Url.Action("Contact","Home")">İletişim</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Contact","Home")">İletişim</a>
 
-                                    </li>
-                                        </ul>
+                                        </li>
+                                    </ul>
                                 </nav>
                             </div>
                         </div>
@@ -123,7 +125,22 @@
                             <ul class="menu-extra">
                                 <li class="search search__open hidden-xs"><span class="ti-search"></span></li>
                                 <li><a href="@Url.Action("Login","Account")"><span class="ti-user"></span></a></li>
-                                <li class="cart__menu"><span class="ti-shopping-cart"></span></li>
+
+                                <li id="shoppingCart" class="cart__menu">
+                                    <span class="ti-shopping-cart"></span>@if (Session["Cart"] != null && ((Takinti.Models.Cart)Session["Cart"]).ProductCount > 0)
+
+                                    {<span id="cartBadge" class="badge" style="background-color:red;
+                                            font-size:xx-small;
+                                            vertical-align:super;
+                                            line-height:15px;
+                                            height:20px;
+                                            color:white;
+                                            font-style:normal">
+                                            @(((Takinti.Models.Cart)Session["Cart"]).ProductCount)
+                                        </span>}
+
+
+                                </li>
                                 <li class="toggle__menu hidden-xs hidden-sm"><span class="ti-menu"></span></li>
                             </ul>
                         </div>
@@ -214,11 +231,13 @@
             </div>
             <!-- End Offset MEnu -->
             <!-- Start Cart Panel -->
-            <div class="shopping__cart">
-                <div class="shopping__cart__inner">
-                    <div class="offsetmenu__close__btn">
-                        <a href="#"><i class="zmdi zmdi-close"></i></a>
-                    </div>
+            
+                <div class="shopping__cart">
+                    <div class="shopping__cart__inner">
+                        <div class="offsetmenu__close__btn">
+                            <a href="#"><i class="zmdi zmdi-close"></i></a>
+                        </div>
+                      {
                     <div class="shp__cart__wrap">
                         <div class="shp__single__product">
                             <div class="shp__pro__thumb">
@@ -227,41 +246,31 @@
                                 </a>
                             </div>
                             <div class="shp__pro__details">
-                                <h2><a href="product-details.html">BO&Play Wireless Speaker</a></h2>
-                                <span class="quantity">QTY: 1</span>
-                                <span class="shp__price">$105.00</span>
+                                <h2><a href="product-details.html"></a></h2>
+                                <span class="quantity"></span>
+                                <span class="shp__price"></span>
                             </div>
                             <div class="remove__btn">
                                 <a href="#" title="Remove this item"><i class="zmdi zmdi-close"></i></a>
                             </div>
                         </div>
-                        <div class="shp__single__product">
-                            <div class="shp__pro__thumb">
-                                <a href="#">
-                                    <img src="/images/product/sm-img/2.jpg" alt="product images">
-                                </a>
-                            </div>
-                            <div class="shp__pro__details">
-                                <h2><a href="product-details.html">Brone Candle</a></h2>
-                                <span class="quantity">QTY: 1</span>
-                                <span class="shp__price">$25.00</span>
-                            </div>
-                            <div class="remove__btn">
-                                <a href="#" title="Remove this item"><i class="zmdi zmdi-close"></i></a>
-                            </div>
-                        </div>
+
                     </div>
+                       
+
                     <ul class="shoping__total">
                         <li class="subtotal">Subtotal:</li>
                         <li class="total__price">$130.00</li>
                     </ul>
                     <ul class="shopping__btn">
-                        <li><a href="@Url.Action("Cart","Shop")">Sepeti Göster</a></li>
-                        <li class="shp__checkout"><a href="@Url.Action("Checkout","Shop")">Alışverişi Tamamla</a></li>
+                        <li><a href="@Url.Action("Cart", "Shop")">Sepeti Göster</a></li>
+                        <li class="shp__checkout"><a href="@Url.Action("Checkout", "Shop")">Alışverişi Tamamla</a></li>
                     </ul>
+                    </div>
                 </div>
-            </div>
+          
             <!-- End Cart Panel -->
+
         </div>
 
         @RenderBody()
@@ -402,88 +411,6 @@
     </div>
     <!-- Body main wrapper end -->
     <!-- QUICKVIEW PRODUCT -->
-    <div id="quickview-wrapper">
-        <!-- Modal -->
-        <div class="modal fade" id="productModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal__container" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="modal-product">
-                            <!-- Start product images -->
-                            <div class="product-images">
-                                <div class="main-image images">
-                                    <img alt="big images" src="/images/product/big-img/1.jpg">
-                                </div>
-                            </div>
-                            <!-- end product images -->
-                            <div class="product-info">
-                                <h1>Simple Fabric Bags</h1>
-                                <div class="rating__and__review">
-                                    <ul class="rating">
-                                        <li><span class="ti-star"></span></li>
-                                        <li><span class="ti-star"></span></li>
-                                        <li><span class="ti-star"></span></li>
-                                        <li><span class="ti-star"></span></li>
-                                        <li><span class="ti-star"></span></li>
-                                    </ul>
-                                    <div class="review">
-                                        <a href="#">4 customer reviews</a>
-                                    </div>
-                                </div>
-                                <div class="price-box-3">
-                                    <div class="s-price-box">
-                                        <span class="new-price">$17.20</span>
-                                        <span class="old-price">$45.00</span>
-                                    </div>
-                                </div>
-                                <div class="quick-desc">
-                                    Designed for simplicity and made from high quality materials. Its sleek geometry and material combinations creates a modern look.
-                                </div>
-                                <div class="select__color">
-                                    <h2>Select color</h2>
-                                    <ul class="color__list">
-                                        <li class="red"><a title="Red" href="#">Red</a></li>
-                                        <li class="gold"><a title="Gold" href="#">Gold</a></li>
-                                        <li class="orange"><a title="Orange" href="#">Orange</a></li>
-                                        <li class="orange"><a title="Orange" href="#">Orange</a></li>
-                                    </ul>
-                                </div>
-                                <div class="select__size">
-                                    <h2>Select size</h2>
-                                    <ul class="color__list">
-                                        <li class="l__size"><a title="L" href="#">L</a></li>
-                                        <li class="m__size"><a title="M" href="#">M</a></li>
-                                        <li class="s__size"><a title="S" href="#">S</a></li>
-                                        <li class="xl__size"><a title="XL" href="#">XL</a></li>
-                                        <li class="xxl__size"><a title="XXL" href="#">XXL</a></li>
-                                    </ul>
-                                </div>
-                                <div class="social-sharing">
-                                    <div class="widget widget_socialsharing_widget">
-                                        <h3 class="widget-title-modal">Share this product</h3>
-                                        <ul class="social-icons">
-                                            <li><a target="_blank" title="rss" href="#" class="rss social-icon"><i class="zmdi zmdi-rss"></i></a></li>
-                                            <li><a target="_blank" title="Linkedin" href="#" class="linkedin social-icon"><i class="zmdi zmdi-linkedin"></i></a></li>
-                                            <li><a target="_blank" title="Pinterest" href="#" class="pinterest social-icon"><i class="zmdi zmdi-pinterest"></i></a></li>
-                                            <li><a target="_blank" title="Tumblr" href="#" class="tumblr social-icon"><i class="zmdi zmdi-tumblr"></i></a></li>
-                                            <li><a target="_blank" title="Pinterest" href="#" class="pinterest social-icon"><i class="zmdi zmdi-pinterest"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="addtocart-btn">
-                                    <a href="#">Add to cart</a>
-                                </div>
-                            </div><!-- .product-info -->
-                        </div><!-- .modal-product -->
-                    </div><!-- .modal-body -->
-                </div><!-- .modal-content -->
-            </div><!-- .modal-dialog -->
-        </div>
-        <!-- END Modal -->
-    </div>
     <!-- END QUICKVIEW PRODUCT -->
     <!-- Placed /js at the end of the document so the pages load faster -->
     <!-- jquery latest version -->
@@ -498,9 +425,49 @@
     <script src="/js/waypoints.min.js"></script>
     <!-- Main /js file that contents all jQuery plugins activation. -->
     <script src="/js/main.js"></script>
-  
+    <script>
+
+        //ajax metodu ile sepete ürün ekleme
+
+        function AddToCart(slug, closeModal) {
+
+            $.post("/Shop/AddToCart", { slug: slug }, function (data) {
+
+                if (data > 0) {
+
+                    UpdateBadge(data);
+                    if (closeModal) {
+
+
+
+                        $(closeModal).modal("hide");
+                        //alert("Ürün sepete eklendi:");
+                    }
+                }
+                else {
+                    alert("Bir hata oluştu, lütfen tekrar deneyiniz.");
+
+                }
+
+            });
+        }
+        // sepeti güncellemek için
+        function UpdateBadge(data) {
+
+
+            if ($("#cartBadge").html() != null) {
+                $("#cartBadge").html(data);
+            }
+            else {
+                $("#shoppingCart").append('<span id="cartBadge"class="badge"style="background-color:red;font-size:xx-small;vertical-align:super;line-height:15px;height:20px;color:white;font-style:normal;">' + data + '</span>');
+
+            }
+
+        }
+
+    </script>
     @*bu sectiona script gönderebilmek için.*@
-    @RenderSection("scripts",false)
+    @RenderSection("scripts", false)
 
 </body>
 </html>
