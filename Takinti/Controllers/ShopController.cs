@@ -35,9 +35,11 @@ namespace Takinti.Controllers
           
                 ((Cart)Session["Cart"]).UpdateDate = DateTime.Now;
                 var cartItem = new CartItem();
+
                 cartItem.Quantity = 1;
 
-                var product = db.Products.FirstOrDefault(p => p.Slug.ToLower() == slug.ToLower() && p.IsInStock == true && p.Quantity > 0 && p.IsPublished == true);
+                var product = db.Products.FirstOrDefault(p => p.Slug.ToLower() == slug.ToLower() && p.IsInStock == true && 
+                p.Quantity > 0 && p.IsPublished == true);
                 if (product==null)
                 {
                     return Json(false);
@@ -52,6 +54,27 @@ namespace Takinti.Controllers
 
           
         }
+
+
+        public JsonResult RemoveFromCart (string slug)
+        {
+            if (Session["Cart"]==null)
+            {
+                Session["Cart"] = new Cart();
+
+            }
+            var cartItem = ((Cart)(Session["Cart"])).CartItems.FirstOrDefault(c => c.Product.Slug.ToLower() == slug.ToLower());
+            
+            if (cartItem !=null)
+            {
+                ((Cart)Session["Cart"]).CartItems.Remove(cartItem);
+            }
+            return Json(CartProductCount());
+        }
+
+
+
+
 
         public int CartProductCount ()
         {
